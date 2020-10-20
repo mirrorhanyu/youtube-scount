@@ -14,5 +14,5 @@ jobs:
       - name: Build
         run: docker build -t youtube-scount .
       - name: Run
-        run: docker run youtube-scount
+        run: docker run -e BILIBILI_COOKIE ${{ secrets.BILIBILI_COOKIE }} youtube-scount
 
