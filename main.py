@@ -15,7 +15,7 @@ for entry in YoutubeFeed(feeds_xml).entries[:1]:
         'outtmpl': 'youtube-download-file'
     }) as ydl:
         ydl.download([f'https://www.youtube.com/watch?v={entry.video_id}'])
-        title = f'#Bora# 2020 Retro Fashion film Insta360 ONE R 1INCH Edition'[:80]
+        title = f'#Bora# 2020 Retro Fashion film 이 작은 액션캠으로만 찍었다구요?! Insta360 ONE R 1INCH Edition'[:80]
         entertainment_video_type = 71
         tags = ['颜值', 'YOUTUBE搬运', '美女', '韩国', '时尚穿搭', '旅行']
         source = 'http://www.youtube.com'
