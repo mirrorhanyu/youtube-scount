@@ -1,0 +1,11 @@
+name: enlighten
+
+on:
+  push:
+    branches:
+      - master
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+
