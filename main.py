@@ -15,7 +15,7 @@ for entry in YoutubeFeed(feeds_xml).entries[:1]:
         'outtmpl': 'youtube-download-file'
     }) as ydl:
         ydl.download([f'https://www.youtube.com/watch?v={entry.video_id}'])
-        title = f'[Bora] {entry.title}'
+        title = f'#Bora# {entry.title}'[:80]
         entertainment_video_type = 71
         tags = ['颜值', 'YOUTUBE搬运', '美女', '韩国', '时尚穿搭', '旅行']
         source = 'http://www.youtube.com'
@@ -25,7 +25,7 @@ for entry in YoutubeFeed(feeds_xml).entries[:1]:
             parts=[
                 VideoPart(
                     path=filepath,
-                    title=entry.title,
+                    title=title,
                     desc=description[:250]
                 )
             ],
