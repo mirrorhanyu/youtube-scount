@@ -1,4 +1,4 @@
-FROM python-ffmpeg
+FROM callmehan/python-ffmpeg
 
 MAINTAINER Han Yu mirrorhanyu@gmail.com
 
