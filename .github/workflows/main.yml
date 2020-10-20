@@ -5,7 +5,14 @@ on:
     branches:
       - master
 
-runs:
-  using: 'docker'
-  image: 'Dockerfile'
+jobs:
+  run:
+    name: run
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        run: docker build -t youtube-scount .
+      - name: Run
+        run: docker run youtube-scount
 
