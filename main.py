@@ -19,7 +19,7 @@ for entry in YoutubeFeed(feeds_xml).entries[:1]:
         entertainment_video_type = 71
         tags = ['颜值', 'YOUTUBE搬运', '美女', '韩国', '时尚穿搭', '旅行']
         source = 'http://www.youtube.com'
-        filepath = glob.glob('youtube-download-file')[0]
+        filepath = glob.glob('youtube-download-file*')[0]
         bilibili = Bilibili(os.getenv('BILIBILI_COOKIE', ''))
         bilibili.upload(
             parts=[
