@@ -1,23 +1,36 @@
 import glob
 import os
+import re
 
 import requests
 import youtube_dl
 from bilibiliupload import Bilibili, VideoPart
 
+from database import Database
 from youtube_feed import YoutubeFeed
+
+db = Database(
+    os.getenv('UESRNAME'),
+    os.getenv('PASSWORD'),
+    os.getenv('REPO')
+)
+
+saved_youtube_ids = [saved_youtube.get('id') for saved_youtube in db.find_all('saved_youtubes')]
 
 youtube_feeds_url = 'https://www.youtube.com/feeds/videos.xml?channel_id=UCuYtwhBPiVI5UiZgT3GEdAw'
 feeds_xml = requests.get(youtube_feeds_url).text
-for entry in YoutubeFeed(feeds_xml).entries[:1]:
+
+entry = next(entry for entry in YoutubeFeed(feeds_xml).entries if entry.video_id not in saved_youtube_ids)
+
+if entry is not None:
     description = entry.media_description[:250]
     with youtube_dl.YoutubeDL({
         'outtmpl': 'youtube-download-file'
     }) as ydl:
         ydl.download([f'https://www.youtube.com/watch?v={entry.video_id}'])
-        title = f'#Bora# 2020 Retro Fashion film Insta360 ONE R 1INCH Edition'[:80]
+        title = re.sub(r'[^a-zA-Z0-9. ]+', '', entry.title)[:80]
         entertainment_video_type = 71
-        tags = ['颜值', 'YOUTUBE搬运', '美女', '韩国', '时尚穿搭', '旅行']
+        tags = ['颜值', 'YOUTUBE搬运', '美女', '韩国', '时尚', '穿搭']
         source = 'http://www.youtube.com'
         filepath = glob.glob('youtube-download-file*')[0]
         bilibili = Bilibili(os.getenv('BILIBILI_COOKIE', ''))
@@ -37,3 +50,7 @@ for entry in YoutubeFeed(feeds_xml).entries[:1]:
             cover='',
             dynamic=''
         )
+        db.save('saved_youtubes', {
+            'id': entry.video_id,
+            'title': entry.title
+        })
