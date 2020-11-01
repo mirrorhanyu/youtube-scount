@@ -1,3 +1,4 @@
+import demoji
 import glob
 import os
 import re
@@ -5,6 +6,7 @@ import re
 import requests
 import youtube_dl
 from bilibiliupload import Bilibili, VideoPart
+from googletrans import Translator
 
 from database import Database
 from youtube_feed import YoutubeFeed
@@ -28,7 +30,9 @@ if entry is not None:
         'outtmpl': 'youtube-download-file'
     }) as ydl:
         ydl.download([f'https://www.youtube.com/watch?v={entry.video_id}'])
-        title = re.sub(r'[^a-zA-Z0-9. ]+', '', entry.title)[:80]
+        demoji.download_codes()
+        translator = Translator()
+        title = translator.translate(demoji.replace(entry.title), dest='zh-CN').text[:80]
         entertainment_video_type = 71
         tags = ['颜值', 'YOUTUBE搬运', '美女', '韩国', '时尚', '穿搭']
         source = 'http://www.youtube.com'
