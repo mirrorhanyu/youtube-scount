@@ -1,7 +1,6 @@
 import demoji
 import glob
 import os
-import re
 
 import requests
 import youtube_dl
@@ -22,7 +21,7 @@ saved_youtube_ids = [saved_youtube.get('id') for saved_youtube in db.find_all('s
 youtube_feeds_url = 'https://www.youtube.com/feeds/videos.xml?channel_id=UCuYtwhBPiVI5UiZgT3GEdAw'
 feeds_xml = requests.get(youtube_feeds_url).text
 
-entry = next(entry for entry in YoutubeFeed(feeds_xml).entries if entry.video_id not in saved_youtube_ids)
+entry = next((entry for entry in YoutubeFeed(feeds_xml).entries if entry.video_id not in saved_youtube_ids), default=None)
 
 if entry is not None:
     description = entry.media_description[:250]
