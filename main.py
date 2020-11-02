@@ -50,7 +50,7 @@ if entry is not None:
             tag=tags,
             desc=description,
             source=source,
-            cover='',
+            cover=entry.media_thumbnail,
             dynamic=''
         )
         db.save('saved_youtubes', {
