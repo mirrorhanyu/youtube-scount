@@ -20,4 +20,7 @@ class YoutubeFeed:
         self.title = self.youtube_feed['title']
         self.author = self.youtube_feed['author']['name']
         self.published = self.youtube_feed['published']
-        self.entries = [YoutubeEntry(entry) for entry in self.youtube_feed['entry']]
+        if isinstance(self.youtube_feed['entry'], list):
+            self.entries = [YoutubeEntry(entry) for entry in self.youtube_feed['entry']]
+        else:
+            self.entries = [YoutubeEntry(self.youtube_feed['entry'])]
