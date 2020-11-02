@@ -24,14 +24,15 @@ feeds_xml = requests.get(youtube_feeds_url).text
 entry = next((entry for entry in YoutubeFeed(feeds_xml).entries if entry.video_id not in saved_youtube_ids), None)
 
 if entry is not None:
-    description = entry.media_description[:250]
     with youtube_dl.YoutubeDL({
         'outtmpl': 'youtube-download-file'
     }) as ydl:
         ydl.download([f'https://www.youtube.com/watch?v={entry.video_id}'])
         demoji.download_codes()
         translator = Translator()
-        title = translator.translate(demoji.replace(entry.title), dest='zh-CN').text[:80]
+        translated_title = translator.translate(demoji.replace(entry.title), dest='zh-CN').text
+        title = f'#{demoji.replace(entry.author)}# {translated_title}'[:80]
+        description = translator.translate(demoji.replace(entry.media_description), dest='zh-CN').text[:250]
         entertainment_video_type = 71
         tags = ['颜值', 'YOUTUBE搬运', '美女', '韩国', '时尚', '穿搭']
         source = 'http://www.youtube.com'
@@ -42,7 +43,7 @@ if entry is not None:
                 VideoPart(
                     path=filepath,
                     title=title,
-                    desc=description[:250]
+                    desc=description
                 )
             ],
             title=title,
