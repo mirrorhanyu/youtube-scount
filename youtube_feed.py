@@ -10,7 +10,7 @@ class YoutubeEntry:
         self.published = youtube_entry['published']
         self.updated = youtube_entry['updated']
         self.media_description = youtube_entry['media:group']['media:description']
-        self.media_thumbnail = youtube_entry['media:group']['media:thumbnail']
+        self.media_thumbnail = youtube_entry['media:group']['media:thumbnail']['@url']
 
 
 class YoutubeFeed:
