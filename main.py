@@ -55,5 +55,6 @@ if entry is not None:
         )
         db.save('saved_youtubes', {
             'id': entry.video_id,
-            'title': entry.title
+            'title': entry.title,
+            'translated_title': title
         })
