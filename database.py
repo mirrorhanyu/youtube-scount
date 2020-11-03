@@ -7,6 +7,7 @@ from git import Repo
 
 class Database:
     def __init__(self, username, password, repo):
+        self.username = username
         self.database_storage = f'./{username}-database'
         shutil.rmtree(self.database_storage, ignore_errors=True)
         remote = f"https://{username}:{password}@{repo}"
@@ -33,5 +34,5 @@ class Database:
             with open(table_file, 'w') as outfile:
                 json.dump([item], outfile, indent=2, ensure_ascii=False)
         self.repo.git.add(f'{table}.json')
-        self.repo.index.commit(f'update {table}')
+        self.repo.index.commit(f'update {table}', author=self.username, committer=self.username)
         self.repo.remote(name="origin").push()
