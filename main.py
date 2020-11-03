@@ -53,6 +53,7 @@ if entry is not None:
         with open('youtube-image-file.jpg', 'wb') as file:
             file.write(requests.get(entry.media_thumbnail).content)
         cover = bilibili.cover_up('youtube-image-file.jpg')
+        print('start to upload', entry.video_id, title)
         bilibili.upload(
             parts=[
                 VideoPart(
