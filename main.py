@@ -63,7 +63,7 @@ if entry is not None:
             tag=tags,
             desc=description,
             source=source,
-            cover=entry.media_thumbnail,
+            cover=bilibili.cover_up(entry.media_thumbnail),
             dynamic=''
         )
         db.save('saved_youtubes', {
