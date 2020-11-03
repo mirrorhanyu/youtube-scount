@@ -25,7 +25,6 @@ saved_youtube_ids = [saved_youtube.get('id') for saved_youtube in db.find_all('s
 youtube_feeds = [
     'https://youtube.com/feeds/videos.xml?playlist_id=PLwHNaMWjN2CVn77Ya3eCTSNy6FSXDdW5R',
     'https://youtube.com/feeds/videos.xml?playlist_id=PLwHNaMWjN2CW2LwSyV0ceqRLA5mfC1RUr',
-    'https://youtube.com/feeds/videos.xml?playlist_id=PLwHNaMWjN2CWkWi6OGR1cu4MAf4XIDCWr',
     'https://youtube.com/feeds/videos.xml?playlist_id=PLwHNaMWjN2CVv38HJPVmVr5lSnEssjc1J',
     'https://youtube.com/feeds/videos.xml?playlist_id=PLwHNaMWjN2CVNy4Km6Gkb0NfwcDtkkeHV',
 ]
