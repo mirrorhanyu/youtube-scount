@@ -48,12 +48,15 @@ if entry is not None:
         entertainment_video_type = 71
         tags = ['颜值', 'YOUTUBE搬运', '美女', '韩国', '时尚', '穿搭']
         source = 'http://www.youtube.com'
-        filepath = glob.glob('youtube-download-file*')[0]
+        video_path = glob.glob('youtube-download-file*')[0]
         bilibili = Bilibili(os.getenv('BILIBILI_COOKIE', ''))
+        with open('youtube-image-file.jpg', 'wb') as file:
+            file.write(requests.get(entry.media_thumbnail).content)
+        cover = bilibili.cover_up('youtube-image-file.jpg')
         bilibili.upload(
             parts=[
                 VideoPart(
-                    path=filepath,
+                    path=video_path,
                     title=title,
                     desc=description
                 )
@@ -63,7 +66,7 @@ if entry is not None:
             tag=tags,
             desc=description,
             source=source,
-            cover=bilibili.cover_up(entry.media_thumbnail),
+            cover=cover,
             dynamic=''
         )
         db.save('saved_youtubes', {
