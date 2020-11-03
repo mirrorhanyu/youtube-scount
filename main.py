@@ -47,7 +47,7 @@ if entry is not None:
         description = translator.translate(demoji.replace(entry.media_description), dest='zh-CN').text[:250]
         entertainment_video_type = 71
         tags = ['颜值', 'YOUTUBE搬运', '美女', '韩国', '时尚', '穿搭']
-        source = 'http://www.youtube.com'
+        source = entry.video_url
         video_path = glob.glob('youtube-download-file*')[0]
         bilibili = Bilibili(os.getenv('BILIBILI_COOKIE', ''))
         with open('youtube-image-file.jpg', 'wb') as file:
