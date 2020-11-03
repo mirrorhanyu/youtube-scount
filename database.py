@@ -28,10 +28,10 @@ class Database:
                 data = json.load(outfile)
                 data.append(item)
             with open(table_file, 'w') as outfile:
-                json.dump(data, outfile, indent=2)
+                json.dump(data, outfile, indent=2, ensure_ascii=False)
         else:
             with open(table_file, 'w') as outfile:
-                json.dump([item], outfile, indent=2)
+                json.dump([item], outfile, indent=2, ensure_ascii=False)
         self.repo.git.add(f'{table}.json')
         self.repo.index.commit(f'update {table}')
         self.repo.remote(name="origin").push()
