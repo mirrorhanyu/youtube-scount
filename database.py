@@ -34,5 +34,5 @@ class Database:
             with open(table_file, 'w') as outfile:
                 json.dump([item], outfile, indent=2, ensure_ascii=False)
         self.repo.git.add(f'{table}.json')
-        self.repo.index.commit(f'update {table}', author=self.username, committer=self.username)
+        self.repo.index.commit(f'update {table}')
         self.repo.remote(name="origin").push()
