@@ -50,7 +50,7 @@ if entry is not None:
         translator = Translator()
         translated_title = translator.translate(demoji.replace(entry.title), dest='zh-CN').text
         author = entry.author.encode("ascii", "ignore").decode()
-        title = f'#{demoji.replace(author)}# {translated_title}'[:80]
+        title = f'#{demoji.replace(author)}# {translated_title}'.replace("ㅣ", "")[:80]
         description = translator.translate(demoji.replace(entry.media_description), dest='zh-CN').text[:250]
         entertainment_video_type = 71
         tags = ['种草', '颜值', '美女', '写真', '小姐姐', '模特', 'vlog', '韩国', '时尚', '穿搭']
