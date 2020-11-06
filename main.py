@@ -22,7 +22,14 @@ saved_youtube_ids = [saved_youtube.get('id') for saved_youtube in db.find_all('s
 # youtube_feeds_url = 'https://www.youtube.com/feeds/videos.xml?channel_id=UCuYtwhBPiVI5UiZgT3GEdAw'
 # feeds_xml = requests.get(youtube_feeds_url).text
 
+# Velvet Tube 벨벳튜브
+# https://www.youtube.com/watch?v=UIFmqSpj8gE
+
 youtube_feeds = [
+    # Eunji Pyoapple
+    'https://youtube.com/feeds/videos.xml?playlist_id=PLP6nl9XHMGoqkmELxBmbdnwE8VEM7ODBg',
+    'https://youtube.com/feeds/videos.xml?playlist_id=PLP6nl9XHMGooO-NrfLCD_0O6sChBprsTa',
+    # Bora
     'https://youtube.com/feeds/videos.xml?playlist_id=PLwHNaMWjN2CVn77Ya3eCTSNy6FSXDdW5R',
     'https://youtube.com/feeds/videos.xml?playlist_id=PLwHNaMWjN2CW2LwSyV0ceqRLA5mfC1RUr',
     'https://youtube.com/feeds/videos.xml?playlist_id=PLwHNaMWjN2CVv38HJPVmVr5lSnEssjc1J',
@@ -42,7 +49,8 @@ if entry is not None:
         demoji.download_codes()
         translator = Translator()
         translated_title = translator.translate(demoji.replace(entry.title), dest='zh-CN').text
-        title = f'#{demoji.replace(entry.author)}# {translated_title}'[:80]
+        author = entry.author.encode("ascii", "ignore").decode()
+        title = f'#{demoji.replace(author)}# {translated_title}'[:80]
         description = translator.translate(demoji.replace(entry.media_description), dest='zh-CN').text[:250]
         entertainment_video_type = 71
         tags = ['种草', '颜值', '美女', '写真', '小姐姐', '模特', 'vlog', '韩国', '时尚', '穿搭']
