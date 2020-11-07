@@ -6,7 +6,7 @@ on:
       - master
   schedule:
 #    - cron:  '0/10 * * * *'   # every 10 mins
-    - cron: '0 10,15,20,21 * * *' # At minute 0 past hour 10, 15, 20, and 21.
+    - cron: '0 2,7,12,13 * * *' # At minute 0 past hour 10, 15, 20, and 21 utc +8
 
 jobs:
   run:
