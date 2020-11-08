@@ -48,7 +48,7 @@ if entry is not None:
         ydl.download([f'https://www.youtube.com/watch?v={entry.video_id}'])
         demoji.download_codes()
         translator = Translator()
-        translated_title = translator.translate(demoji.replace(entry.title), dest='zh-CN').text
+        translated_title = re.sub('[\uac00-\ud7ff]+', '', translator.translate(demoji.replace(entry.title), dest='zh-CN').text)
         author = entry.author.encode("ascii", "ignore").decode()
         title = f'#{demoji.replace(author)}# {translated_title}'.replace("ㅣ", "")[:80]
         description = translator.translate(demoji.replace(entry.media_description), dest='zh-CN').text[:250]
