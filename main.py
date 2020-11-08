@@ -1,5 +1,6 @@
 import glob
 import os
+import re
 from itertools import chain
 
 import demoji
