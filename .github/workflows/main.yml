@@ -18,10 +18,4 @@ jobs:
       - name: Build
         run: docker build -t youtube-scount .
       - name: Run
-        uses: nick-invision/retry@v2
-        with:
-          timeout_minutes: 15
-          retry_wait_seconds: 300
-          max_attempts: 3
-          retry_on: any
-          command: docker run -e BILIBILI_COOKIE="${{ secrets.BILIBILI_COOKIE }}" -e REPO="${{ secrets.REPO }}" -e UESRNAME="${{ secrets.UESRNAME }}" -e PASSWORD="${{ secrets.PASSWORD }}" youtube-scount
+        run: docker run -e BILIBILI_COOKIE="${{ secrets.BILIBILI_COOKIE }}" -e REPO="${{ secrets.REPO }}" -e UESRNAME="${{ secrets.UESRNAME }}" -e PASSWORD="${{ secrets.PASSWORD }}" youtube-scount
