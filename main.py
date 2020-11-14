@@ -49,7 +49,6 @@ if entry is not None:
     with youtube_dl.YoutubeDL({
         'outtmpl': 'youtube-download-file'
     }) as ydl:
-        ydl.download([f'https://www.youtube.com/watch?v={entry.video_id}'])
         demoji.download_codes()
         translator = Translator()
         translated_title = re.sub('[\uac00-\ud7ff]+', '', translator.translate(demoji.replace(entry.title), dest='zh-CN').text)
@@ -59,6 +58,7 @@ if entry is not None:
         entertainment_video_type = 71
         tags = ['种草', '颜值', '美女', '写真', '小姐姐', '模特', 'vlog', '韩国', '时尚', '穿搭']
         source = entry.video_url
+        ydl.download([f'https://www.youtube.com/watch?v={entry.video_id}'])
         video_path = glob.glob('youtube-download-file*')[0]
         bilibili = Bilibili(os.getenv('BILIBILI_COOKIE', ''))
         with open('youtube-image-file.jpg', 'wb') as file:
