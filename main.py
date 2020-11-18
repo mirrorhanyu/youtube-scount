@@ -14,9 +14,9 @@ from database import Database
 from youtube_feed import YoutubeFeed
 
 
-@retry(wait_exponential_multiplier=1000, wait_exponential_max=10000)
+@retry(wait_exponential_multiplier=1000, wait_exponential_max=10000, stop_max_attempt_number=6)
 def translate_to_chinese(text):
-    print('start to retry translator', text)
+    print('start to translator', text)
     translator = Translator()
     return translator.translate(text, dest='zh-CN')
 
