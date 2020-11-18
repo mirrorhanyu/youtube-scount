@@ -58,8 +58,8 @@ if entry is not None:
         author = entry.author.encode("ascii", "ignore").decode()
         title = f'#{demoji.replace(author)}# {translated_title}'.replace("ㅣ", "").replace("ㅋㅋ", "")[:80]
         description = translator.translate(demoji.replace(entry.media_description), dest='zh-CN').text[:250]
-        entertainment_video_type = 71
-        tags = ['种草', '颜值', '美女', '写真', '小姐姐', '模特', 'vlog', '韩国', '时尚', '穿搭']
+        daily_video_type = 21
+        tags = ['生活', '日常', '种草', '颜值', '美女', '写真', '小姐姐', '模特', 'vlog', '韩国', '时尚', '穿搭']
         source = entry.video_url
         ydl.download([f'https://www.youtube.com/watch?v={entry.video_id}'])
         video_path = glob.glob('youtube-download-file*')[0]
@@ -77,7 +77,7 @@ if entry is not None:
                 )
             ],
             title=title,
-            tid=entertainment_video_type,
+            tid=daily_video_type,
             tag=tags,
             desc=description,
             source=source,
