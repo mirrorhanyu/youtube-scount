@@ -8,9 +8,18 @@ import requests
 import youtube_dl
 from bilibiliupload import Bilibili, VideoPart
 from googletrans import Translator
+from retrying import retry
 
 from database import Database
 from youtube_feed import YoutubeFeed
+
+
+@retry(wait_exponential_multiplier=1000, wait_exponential_max=10000)
+def translate_to_chinese(text):
+    print('start to retry translator', text)
+    translator = Translator()
+    return translator.translate(text, dest='zh-CN')
+
 
 db = Database(
     os.getenv('UESRNAME'),
@@ -53,11 +62,10 @@ if entry is not None:
         'outtmpl': 'youtube-download-file'
     }) as ydl:
         demoji.download_codes()
-        translator = Translator()
-        translated_title = re.sub('[\uac00-\ud7ff]+', '', translator.translate(demoji.replace(entry.title), dest='zh-CN').text)
+        translated_title = re.sub('[\uac00-\ud7ff]+', '', translate_to_chinese(demoji.replace(entry.title), dest='zh-CN').text)
         author = entry.author.encode("ascii", "ignore").decode()
         title = f'#{demoji.replace(author)}# {translated_title}'.replace("ㅣ", "").replace("ㅋㅋ", "")[:80]
-        description = translator.translate(demoji.replace(entry.media_description), dest='zh-CN').text[:250]
+        description = translate_to_chinese(demoji.replace(entry.media_description), dest='zh-CN').text[:250]
         daily_video_type = 21
         tags = ['生活', '日常', '种草', '颜值', '美女', '写真', '小姐姐', '模特', 'vlog', '韩国', '时尚', '穿搭']
         source = entry.video_url
