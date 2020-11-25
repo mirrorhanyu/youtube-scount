@@ -37,7 +37,7 @@ saved_youtube_ids = [saved_youtube.get('id') for saved_youtube in db.find_all('s
 
 youtube_feeds = [
     # Eunji Pyoapple
-    # 'https://youtube.com/feeds/videos.xml?channel_id=UC9K0rLE1SMh86nVxzkCBpNA',
+    'https://youtube.com/feeds/videos.xml?channel_id=UC9K0rLE1SMh86nVxzkCBpNA',
 
     # self add
     'https://youtube.com/feeds/videos.xml?playlist_id=PLaNoH0JqaHZMTi0r_8QoMFIFz0qoxaDSA',
