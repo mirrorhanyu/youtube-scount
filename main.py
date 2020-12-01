@@ -7,10 +7,10 @@ import demoji
 import requests
 import youtube_dl
 from bilibiliupload import Bilibili, VideoPart
+from gitdatabase.client import Client
 from googletrans import Translator
 from retrying import retry
 
-from database import Database
 from youtube_feed import YoutubeFeed
 
 
@@ -21,13 +21,10 @@ def translate_to_chinese(text):
     return translator.translate(text, dest='zh-CN')
 
 
-db = Database(
-    os.getenv('UESRNAME'),
-    os.getenv('PASSWORD'),
-    os.getenv('REPO')
-)
+client = Client(os.getenv('REPO'), os.getenv('UESRNAME'), os.getenv('PASSWORD'))
 
-saved_youtube_ids = [saved_youtube.get('id') for saved_youtube in db.find_all('saved_youtubes')]
+
+saved_youtube_ids = [saved_youtube.get('id') for saved_youtube in client.saved_youtubes.find({})]
 
 # youtube_feeds_url = 'https://www.youtube.com/feeds/videos.xml?channel_id=UCuYtwhBPiVI5UiZgT3GEdAw'
 # feeds_xml = requests.get(youtube_feeds_url).text
