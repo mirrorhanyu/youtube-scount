@@ -8,17 +8,32 @@ import requests
 import youtube_dl
 from bilibiliupload import Bilibili, VideoPart
 from gitdatabase.client import Client
-from googletrans import Translator
+from googletrans import Translator as GoogleTranslator
 from retrying import retry
+from translate import Translator
 
 from youtube_feed import YoutubeFeed
 
 
 @retry(wait_exponential_multiplier=1000, wait_exponential_max=10000, stop_max_attempt_number=6)
-def translate_to_chinese(text):
-    print('start to translator', text)
-    translator = Translator()
+def translate_via_googletrans(text):
+    print('start to translate via googletrans', text)
+    translator = GoogleTranslator()
     return translator.translate(text, dest='zh-CN')
+
+
+@retry(wait_exponential_multiplier=1000, wait_exponential_max=10000, stop_max_attempt_number=6)
+def translate_via_translate(text):
+    print('start to translate via translate', text)
+    translator = Translator(to_lang="zh")
+    return translator.translate(text)
+
+
+def translate_to_chinese(text):
+    try:
+        return translate_via_googletrans(text)
+    except:
+        return translate_via_translate(text)
 
 
 client = Client(os.getenv('REPO'), os.getenv('UESRNAME'), os.getenv('PASSWORD'))
@@ -89,7 +104,7 @@ if entry is not None:
             cover=cover,
             dynamic=''
         )
-        db.save('saved_youtubes', {
+        client.saved_youtubes.insert_one({
             'id': entry.video_id,
             'author': entry.author,
             'title': entry.title,
