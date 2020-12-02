@@ -74,7 +74,7 @@ if entry is not None:
         'outtmpl': 'youtube-download-file'
     }) as ydl:
         demoji.download_codes()
-        translated_title = re.sub('[\uac00-\ud7ff]+', '', translate_to_chinese(demoji.replace(entry.title)).text)
+        translated_title = re.sub('[\uac00-\ud7ff]+', '', translate_to_chinese(demoji.replace(entry.title)))
         author = entry.author.encode("ascii", "ignore").decode()
         title = f'#{demoji.replace(author)}# {translated_title}'.replace("ㅣ", "").replace("ㅋㅋ", "")[:80]
         description = translate_to_chinese(demoji.replace(entry.media_description))[:250]
