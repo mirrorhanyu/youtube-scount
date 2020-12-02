@@ -19,7 +19,7 @@ from youtube_feed import YoutubeFeed
 def translate_via_googletrans(text):
     print('start to translate via googletrans', text)
     translator = GoogleTranslator()
-    return translator.translate(text, dest='zh-CN')
+    return translator.translate(text, dest='zh-CN').text
 
 
 @retry(wait_exponential_multiplier=1000, wait_exponential_max=10000, stop_max_attempt_number=6)
@@ -77,7 +77,7 @@ if entry is not None:
         translated_title = re.sub('[\uac00-\ud7ff]+', '', translate_to_chinese(demoji.replace(entry.title)).text)
         author = entry.author.encode("ascii", "ignore").decode()
         title = f'#{demoji.replace(author)}# {translated_title}'.replace("ㅣ", "").replace("ㅋㅋ", "")[:80]
-        description = translate_to_chinese(demoji.replace(entry.media_description)).text[:250]
+        description = translate_to_chinese(demoji.replace(entry.media_description))[:250]
         entertainment_video_type = 71
         tags = ['生活', '日常', '种草', '颜值', '美女', '写真', '小姐姐', '模特', 'vlog', '韩国', '时尚', '穿搭']
         source = entry.video_url
