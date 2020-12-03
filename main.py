@@ -25,7 +25,7 @@ def translate_via_googletrans(text):
 @retry(wait_exponential_multiplier=1000, wait_exponential_max=10000, stop_max_attempt_number=6)
 def translate_via_translate(text):
     print('start to translate via translate', text)
-    translator = Translator(to_lang="zh")
+    translator = Translator(from_lang='ko', to_lang="zh")
     return translator.translate(text)
 
 
