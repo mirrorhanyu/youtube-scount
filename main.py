@@ -88,6 +88,7 @@ if entry is not None:
         ydl.download([f'https://www.youtube.com/watch?v={entry.video_id}'])
         video_path = glob.glob('youtube-download-file*')[0]
         bilibili = Bilibili(os.getenv('BILIBILI_COOKIE', ''))
+        bilibili.session.verify = False
         with open('youtube-image-file.jpg', 'wb') as file:
             file.write(requests.get(entry.media_thumbnail).content)
         cover = bilibili.cover_up('youtube-image-file.jpg')
