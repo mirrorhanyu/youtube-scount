@@ -15,7 +15,7 @@ from translate import Translator
 from youtube_feed import YoutubeFeed
 
 
-@retry(wait_exponential_multiplier=1000, wait_exponential_max=10000, stop_max_attempt_number=6)
+@retry(wait_exponential_multiplier=1000, wait_exponential_max=10000, stop_max_attempt_number=12)
 def translate_via_googletrans(text):
     print('start to translate via googletrans', text)
     translator = GoogleTranslator()
@@ -24,7 +24,7 @@ def translate_via_googletrans(text):
     return translation
 
 
-@retry(wait_exponential_multiplier=1000, wait_exponential_max=10000, stop_max_attempt_number=6)
+@retry(wait_exponential_multiplier=1000, wait_exponential_max=10000, stop_max_attempt_number=12)
 def translate_via_translate(text):
     print('start to translate via translate', text)
     translator = Translator(from_lang='ko', to_lang="zh")
@@ -82,7 +82,7 @@ if entry is not None:
         author = entry.author.encode("ascii", "ignore").decode()
         title = f'#{demoji.replace(author)}# {translated_title}'.replace("ㅣ", "").replace("ㅋㅋ", "")[:80]
         description = translate_to_chinese(demoji.replace(entry.media_description))[:250]
-        entertainment_video_type = 71
+        daily_video_type = 21
         tags = ['生活', '日常', '种草', '颜值', '美女', '写真', '小姐姐', '模特', 'vlog', '韩国', '时尚', '穿搭']
         source = entry.video_url
         ydl.download([f'https://www.youtube.com/watch?v={entry.video_id}'])
@@ -101,7 +101,7 @@ if entry is not None:
                 )
             ],
             title=title,
-            tid=entertainment_video_type,
+            tid=daily_video_type,
             tag=tags,
             desc=description,
             source=source,
