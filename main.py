@@ -1,3 +1,4 @@
+from datetime import datetime, timezone, timedelta
 import glob
 import os
 import re
@@ -38,6 +39,11 @@ def translate_to_chinese(text):
         return translate_via_googletrans(text)
     except:
         return translate_via_translate(text)
+
+
+def beijing_time():
+    utc = datetime.utcnow().replace(tzinfo=timezone.utc)
+    return utc.astimezone(timezone(timedelta(hours=8)))
 
 
 client = Client(os.getenv('REPO'), os.getenv('UESRNAME'), os.getenv('PASSWORD'))
@@ -112,5 +118,6 @@ if entry is not None:
             'id': entry.video_id,
             'author': entry.author,
             'title': entry.title,
-            'translated_title': title
+            'translated_title': title,
+            'uploaded_at': str(beijing_time)
         })
