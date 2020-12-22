@@ -60,18 +60,8 @@ saved_youtube_ids = [saved_youtube.get('id') for saved_youtube in client.saved_y
 youtube_feeds = [
     # Eunji Pyoapple
     'https://youtube.com/feeds/videos.xml?channel_id=UC9K0rLE1SMh86nVxzkCBpNA',
-
-    # self add
-    'https://youtube.com/feeds/videos.xml?playlist_id=PLaNoH0JqaHZMTi0r_8QoMFIFz0qoxaDSA',
-
-    # Eunji Pyoapple playlists
-    'https://youtube.com/feeds/videos.xml?playlist_id=PLP6nl9XHMGoqkmELxBmbdnwE8VEM7ODBg',
-    'https://youtube.com/feeds/videos.xml?playlist_id=PLP6nl9XHMGooO-NrfLCD_0O6sChBprsTa',
     # Bora
-    'https://youtube.com/feeds/videos.xml?playlist_id=PLwHNaMWjN2CVn77Ya3eCTSNy6FSXDdW5R',
-    'https://youtube.com/feeds/videos.xml?playlist_id=PLwHNaMWjN2CW2LwSyV0ceqRLA5mfC1RUr',
-    'https://youtube.com/feeds/videos.xml?playlist_id=PLwHNaMWjN2CVv38HJPVmVr5lSnEssjc1J',
-    'https://youtube.com/feeds/videos.xml?playlist_id=PLwHNaMWjN2CVNy4Km6Gkb0NfwcDtkkeHV',
+    'https://www.youtube.com/feeds/videos.xml?channel_id=UCuYtwhBPiVI5UiZgT3GEdAw'
 ]
 youtube_feed_entries = [YoutubeFeed(requests.get(feed).text).entries for feed in youtube_feeds]
 # entries = [entry for youtube_feed_entry in youtube_feed_entries for entry in youtube_feed_entry]
