@@ -12,7 +12,7 @@ jobs:
   run:
     name: run
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v2

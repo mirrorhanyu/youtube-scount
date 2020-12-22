@@ -57,6 +57,12 @@ saved_youtube_ids = [saved_youtube.get('id') for saved_youtube in client.saved_y
 # Velvet Tube 벨벳튜브
 # https://www.youtube.com/watch?v=UIFmqSpj8gE
 
+
+# 'https://www.youtube.com/channel/UC20oe-ECFnuQH8jr-4McArw/videos',
+
+# PDF
+# https://gumroad.com/pyoapple
+
 youtube_feeds = [
     # Eunji Pyoapple
     'https://youtube.com/feeds/videos.xml?channel_id=UC9K0rLE1SMh86nVxzkCBpNA',
