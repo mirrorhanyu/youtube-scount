@@ -66,8 +66,6 @@ saved_youtube_ids = [saved_youtube.get('id') for saved_youtube in client.saved_y
 youtube_feeds = [
     # Eunji Pyoapple
     'https://youtube.com/feeds/videos.xml?channel_id=UC9K0rLE1SMh86nVxzkCBpNA',
-    # Bora
-    'https://www.youtube.com/feeds/videos.xml?channel_id=UCuYtwhBPiVI5UiZgT3GEdAw'
 ]
 youtube_feed_entries = [YoutubeFeed(requests.get(feed).text).entries for feed in youtube_feeds]
 # entries = [entry for youtube_feed_entry in youtube_feed_entries for entry in youtube_feed_entry]
