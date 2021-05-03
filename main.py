@@ -77,6 +77,9 @@ if entry is not None:
     with youtube_dl.YoutubeDL({
         'outtmpl': 'youtube-download-file'
     }) as ydl:
+        print('================')
+        print(entry)
+        print('================')
         demoji.download_codes()
         translated_title = re.sub('[\uac00-\ud7ff]+', '', translate_to_chinese(demoji.replace(entry.title)))
         author = entry.author.encode("ascii", "ignore").decode()
