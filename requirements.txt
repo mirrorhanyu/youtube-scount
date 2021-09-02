@@ -6,4 +6,4 @@ googletrans==3.0.0
 translate==3.5.0
 demoji==0.3.0
 retrying==1.3.3
-GitDatabase==0.0.4
+GitDatabase==0.0.5
