@@ -46,7 +46,7 @@ def beijing_time():
     return utc.astimezone(timezone(timedelta(hours=8)))
 
 
-client = Client(os.getenv('REPO'), os.getenv('UESRNAME'), os.getenv('PASSWORD'))
+client = Client(os.getenv('REPO'), os.getenv('PERSONAL_ACCESS_TOKEN'))
 
 
 saved_youtube_ids = [saved_youtube.get('id') for saved_youtube in client.saved_youtubes.find({})]
