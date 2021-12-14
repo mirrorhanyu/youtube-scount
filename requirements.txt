@@ -1,7 +1,7 @@
 requests==2.23.0
 xmltodict==0.12.0
 youtube_dl==2020.12.7
-bilibiliupload==0.2.3
+bilibiliupload==0.2.4
 googletrans==3.0.0
 translate==3.5.0
 demoji==0.3.0
