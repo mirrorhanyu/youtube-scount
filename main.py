@@ -63,7 +63,6 @@ saved_youtube_ids = [saved_youtube.get('id') for saved_youtube in client.saved_y
 # https://gumroad.com/pyoapple
 
 youtube_feeds = [
-    # Eunji Pyoapple
     'https://youtube.com/feeds/videos.xml?channel_id=UC9K0rLE1SMh86nVxzkCBpNA',
 ]
 youtube_feed_entries = [YoutubeFeed(requests.get(feed).text).entries for feed in youtube_feeds]
