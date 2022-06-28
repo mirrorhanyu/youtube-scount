@@ -16,7 +16,7 @@ from translate import Translator
 from youtube_feed import YoutubeFeed
 
 
-@retry(wait_exponential_multiplier=1000, wait_exponential_max=10000, stop_max_attempt_number=12)
+@retry(wait_exponential_multiplier=1000, wait_exponential_max=10000, stop_max_attempt_number=30)
 def translate_via_googletrans(text):
     print('start to translate via googletrans', text)
     translator = GoogleTranslator()
@@ -25,7 +25,7 @@ def translate_via_googletrans(text):
     return translation
 
 
-@retry(wait_exponential_multiplier=1000, wait_exponential_max=10000, stop_max_attempt_number=12)
+@retry(wait_exponential_multiplier=1000, wait_exponential_max=10000, stop_max_attempt_number=30)
 def translate_via_translate(text):
     print('start to translate via translate', text)
     translator = Translator(from_lang='ko', to_lang="zh")
