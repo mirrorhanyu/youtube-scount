@@ -99,6 +99,11 @@ if entry is not None:
                     path=video_path,
                     title=title,
                     desc=description
+                ),
+                VideoPart(
+                    path=glob.glob('crash*')[0],
+                    title="防撞车",
+                    desc="防撞车求三连"
                 )
             ],
             title=title,
